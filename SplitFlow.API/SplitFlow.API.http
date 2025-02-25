@@ -1,0 +1,6 @@
+@SplitFlow.API_HostAddress = http://localhost:5095
+
+GET {{SplitFlow.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
