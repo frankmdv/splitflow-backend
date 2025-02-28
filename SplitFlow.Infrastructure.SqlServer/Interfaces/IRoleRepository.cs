@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace SplitFlow.Infrastructure.SqlServer.Interfaces
 {
-    public interface IUserRepository
+    public interface IRoleRepository
     {
-        Task AddAsync(User user);
-        Task UpdateAsync(User user);
+        Task AddAsync(Role role);
+        Task UpdateAsync(Role role);
         Task DeleteAsync(long id);
     }
 }

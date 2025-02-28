@@ -2,7 +2,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SplitFlow.Domain\SplitFlow.Domain.csproj" />
-    <ProjectReference Include="..\SplitFlow.Application\SplitFlow.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

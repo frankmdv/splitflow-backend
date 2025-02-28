@@ -2,7 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 using SplitFlow.Application.Commands;
-using SplitFlow.Application.Handlers;
+using SplitFlow.Application.Handlers.Roles;
+using SplitFlow.Application.Handlers.Users;
 using SplitFlow.Infrastructure.MongoDB.Data;
 using SplitFlow.Infrastructure.MongoDB.EventHandlers;
 using SplitFlow.Infrastructure.SqlServer.Data;
@@ -20,9 +21,12 @@ var services = builder.Services;
 
 // ✅ Configurar MediatR (CQRS)
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
-    typeof(CreateUserCommand).Assembly,         // 🔹 Ensamblado de comandos
-    typeof(CreateUserHandler).Assembly,         // 🔹 Ensamblado de manejadores de comandos
-    typeof(UserCreatedEventHandler).Assembly    // 🔹 Ensamblado de manejadores de eventos
+    typeof(UserCommandHandler).Assembly,
+    typeof(UserQueryHandler).Assembly,
+    typeof(UserCreatedEventHandler).Assembly,
+    typeof(RoleCommandHandler).Assembly,
+    typeof(RoleQueryHandler).Assembly,
+    typeof(RoleCreatedEventHandler).Assembly
 ));
 
 // ✅ Configurar SQL Server con EF Core
@@ -31,7 +35,7 @@ services.AddDbContext<MyDbContext>(options =>
 
 // ✅ Configurar MongoDB
 var mongoClient = new MongoClient(configuration.GetConnectionString("MongoDb"));
-var mongoDatabase = mongoClient.GetDatabase("Db_ReadSlipFlow"); // Nombre real de la base de datos
+var mongoDatabase = mongoClient.GetDatabase("Db_ReadSlipFlow");
 services.AddSingleton<IMongoClient>(mongoClient);
 services.AddScoped<IMongoDatabase>(sp => mongoDatabase);
 services.AddSingleton<MongoDbContext>();
@@ -43,6 +47,7 @@ if (!collections.Contains("Users"))
 
 // ✅ Inyección de dependencias para Repositorios
 services.AddScoped<IUserRepository, UserRepository>();
+services.AddScoped<IRoleRepository, RoleRepository>();
 
 // ✅ Agregar Controladores
 services.AddControllers();

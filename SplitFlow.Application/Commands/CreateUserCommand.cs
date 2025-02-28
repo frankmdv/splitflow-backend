@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace SplitFlow.Application.Commands
 {
-    public class CreateUserCommand : IRequest<int>
+    public class CreateUserCommand : IRequest<long>
     {
-        public string Name { get; set; }
+        public string Username { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
+        public long RoleId { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

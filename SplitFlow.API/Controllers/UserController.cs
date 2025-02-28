@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SplitFlow.Application.Commands;
+using SplitFlow.Application.Queries.Users;
 
 namespace SplitFlow.API.Controllers
 {
@@ -20,6 +21,28 @@ namespace SplitFlow.API.Controllers
         {
             var userId = await _mediator.Send(command);
             return Ok(new { UserId = userId });
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUserById(long id)
+        {
+            var user = await _mediator.Send(new GetUserByIdQuery(id));
+
+            if (user == null)
+                return NotFound("Usuario no encontrado");
+
+            return Ok(user);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await _mediator.Send(new GetAllUsersQuery());
+
+            if (users == null || users.Count == 0)
+                return NotFound("No hay usuarios registrados.");
+
+            return Ok(users);
         }
     }
 }

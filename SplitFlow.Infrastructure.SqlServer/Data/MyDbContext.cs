@@ -14,6 +14,7 @@ namespace SplitFlow.Infrastructure.SqlServer.Data
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

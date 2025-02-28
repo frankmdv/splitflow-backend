@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SplitFlow.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,12 @@ namespace SplitFlow.Infrastructure.MongoDB.ReadModels
 {
     public class UserReadModel
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public long Id { get; set; }
+        public string Username { get; set; }
         public string Email { get; set; }
+        public RoleReadModel Role { get; set; }
+        public bool IsActive { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public string PasswordHash { get; set; }
     }
 }

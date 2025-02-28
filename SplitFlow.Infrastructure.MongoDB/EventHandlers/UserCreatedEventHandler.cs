@@ -24,11 +24,19 @@ namespace SplitFlow.Infrastructure.MongoDB.EventHandlers
             var user = new UserReadModel
             {
                 Id = notification.UserId,
-                Name = notification.Name,
-                Email = notification.Email
+                Username = notification.Username,
+                Email = notification.Email,
+                PasswordHash = notification.PasswordHash,
+                Role = new RoleReadModel
+                {
+                    Id = notification.RoleId,
+                    Name = notification.RoleName
+                },
+                IsActive = notification.IsActive,
+                CreatedAt = notification.CreatedAt
             };
 
-            await _users.InsertOneAsync(user);
+            await _users.InsertOneAsync(user, cancellationToken: cancellationToken);
         }
     }
 }

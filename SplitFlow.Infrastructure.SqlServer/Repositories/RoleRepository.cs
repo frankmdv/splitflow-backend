@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SplitFlow.Domain.Entities;
+﻿using SplitFlow.Domain.Entities;
 using SplitFlow.Infrastructure.SqlServer.Data;
 using SplitFlow.Infrastructure.SqlServer.Interfaces;
 using System;
@@ -10,33 +9,33 @@ using System.Threading.Tasks;
 
 namespace SplitFlow.Infrastructure.SqlServer.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class RoleRepository : IRoleRepository
     {
         private readonly MyDbContext _dbContext;
 
-        public UserRepository(MyDbContext dbContext)
+        public RoleRepository(MyDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task AddAsync(User user)
+        public async Task AddAsync(Role role)
         {
-            await _dbContext.Users.AddAsync(user);
+            await _dbContext.Roles.AddAsync(role);
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(User user)
+        public async Task UpdateAsync(Role role)
         {
-            _dbContext.Users.Update(user);
+            _dbContext.Roles.Update(role);
             await _dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(long id)
         {
-            var user = await _dbContext.Users.FindAsync(id);
-            if (user != null)
+            var role = await _dbContext.Roles.FindAsync(id);
+            if (role != null)
             {
-                _dbContext.Users.Remove(user);
+                _dbContext.Roles.Remove(role);
                 await _dbContext.SaveChangesAsync();
             }
         }
