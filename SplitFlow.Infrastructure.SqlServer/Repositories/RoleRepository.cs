@@ -39,5 +39,11 @@ namespace SplitFlow.Infrastructure.SqlServer.Repositories
                 await _dbContext.SaveChangesAsync();
             }
         }
+
+        public async Task<Role> GetByIdAsync(long id)
+        {
+            return await _dbContext.Roles.FindAsync(id);
+        }
+
     }
 }

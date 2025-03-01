@@ -12,5 +12,6 @@ namespace SplitFlow.Infrastructure.SqlServer.Interfaces
         Task AddAsync(Role role);
         Task UpdateAsync(Role role);
         Task DeleteAsync(long id);
+        Task<Role> GetByIdAsync(long id);
     }
 }

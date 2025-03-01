@@ -29,8 +29,9 @@ namespace SplitFlow.Infrastructure.MongoDB.EventHandlers
                 PasswordHash = notification.PasswordHash,
                 Role = new RoleReadModel
                 {
-                    Id = notification.RoleId,
-                    Name = notification.RoleName
+                    Id = notification.Role.RoleId,
+                    Name = notification.Role.Name,
+                    Description = notification.Role.Description
                 },
                 IsActive = notification.IsActive,
                 CreatedAt = notification.CreatedAt
