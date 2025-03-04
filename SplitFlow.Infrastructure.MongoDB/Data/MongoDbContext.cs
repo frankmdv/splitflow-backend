@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
-using SplitFlow.Infrastructure.MongoDB.ReadModels;
+using SplitFlow.Infrastructure.MongoDB.ReadModels.Perfilamiento;
 
 
 namespace SplitFlow.Infrastructure.MongoDB.Data
@@ -17,5 +17,8 @@ namespace SplitFlow.Infrastructure.MongoDB.Data
 
         //Agregar modelos de lectura aqui
         public IMongoCollection<UserReadModel> Users => _database.GetCollection<UserReadModel>("Users");
+        public IMongoCollection<RoleReadModel> Roles => _database.GetCollection<RoleReadModel>("Roles");
+        public IMongoCollection<ModuloReadModel> Modulos => _database.GetCollection<ModuloReadModel>("Modules");
+        public IMongoCollection<RolModuloReadModel> RolModulo => _database.GetCollection<RolModuloReadModel>("RolModulo");
     }
 }

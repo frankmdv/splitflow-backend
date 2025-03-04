@@ -2,13 +2,15 @@
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 using SplitFlow.Application.Commands;
-using SplitFlow.Application.Handlers.Roles;
-using SplitFlow.Application.Handlers.Users;
+using SplitFlow.Application.Handlers.Perfilamiento.Modulos;
+using SplitFlow.Application.Handlers.Perfilamiento.Roles;
+using SplitFlow.Application.Handlers.Perfilamiento.RolModulos;
+using SplitFlow.Application.Handlers.Perfilamiento.Users;
 using SplitFlow.Infrastructure.MongoDB.Data;
-using SplitFlow.Infrastructure.MongoDB.EventHandlers;
+using SplitFlow.Infrastructure.MongoDB.EventHandlers.Perfilamiento;
 using SplitFlow.Infrastructure.SqlServer.Data;
-using SplitFlow.Infrastructure.SqlServer.Interfaces;
-using SplitFlow.Infrastructure.SqlServer.Repositories;
+using SplitFlow.Infrastructure.SqlServer.Interfaces.Perfilamiento;
+using SplitFlow.Infrastructure.SqlServer.Repositories.Perfilamiento;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,33 +23,50 @@ var services = builder.Services;
 
 // ✅ Configurar MediatR (CQRS)
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
+    #region Usuarios
     typeof(UserCommandHandler).Assembly,
     typeof(UserQueryHandler).Assembly,
     typeof(UserCreatedEventHandler).Assembly,
+    #endregion
+    #region Roles
     typeof(RoleCommandHandler).Assembly,
     typeof(RoleQueryHandler).Assembly,
-    typeof(RoleCreatedEventHandler).Assembly
+    typeof(RoleCreatedEventHandler).Assembly,
+    #endregion
+    #region Modulos
+    typeof(ModuloCommandHandler).Assembly,
+    typeof(ModuloQueryHandler).Assembly,
+    typeof(ModuloCreatedEventHandler).Assembly,
+    #endregion
+    #region RolModulo
+    typeof(RolModuloCommandHandler).Assembly,
+    typeof(RolModuloQueryHandler).Assembly,
+    typeof(RolModuloCreatedEventHandler).Assembly
+    #endregion
 ));
 
+#region Confuguracion SQL
 // ✅ Configurar SQL Server con EF Core
 services.AddDbContext<MyDbContext>(options =>
     options.UseSqlServer(configuration.GetConnectionString("SqlServer")));
+#endregion
 
+#region Configuracion NOSQL
 // ✅ Configurar MongoDB
 var mongoClient = new MongoClient(configuration.GetConnectionString("MongoDb"));
 var mongoDatabase = mongoClient.GetDatabase("Db_ReadSlipFlow");
 services.AddSingleton<IMongoClient>(mongoClient);
 services.AddScoped<IMongoDatabase>(sp => mongoDatabase);
 services.AddSingleton<MongoDbContext>();
+#endregion
 
-var collections = mongoDatabase.ListCollectionNames().ToList();
-if (!collections.Contains("Users"))
-    mongoDatabase.CreateCollection("Users");
-
-
+#region Inyeccion de dependencias
 // ✅ Inyección de dependencias para Repositorios
 services.AddScoped<IUserRepository, UserRepository>();
 services.AddScoped<IRoleRepository, RoleRepository>();
+services.AddScoped<IModuloRepository, ModuloRepository>();
+services.AddScoped<IRolModuloRepository, RolModuloRepository>();
+#endregion
 
 // ✅ Agregar Controladores
 services.AddControllers();

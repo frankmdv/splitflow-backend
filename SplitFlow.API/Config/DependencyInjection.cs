@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
-using SplitFlow.Application.Commands;
+using SplitFlow.Application.Commands.Perfilamiento;
 using SplitFlow.Infrastructure.SqlServer.Data;
 
 namespace SplitFlow.API.Config

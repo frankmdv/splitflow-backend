@@ -1,8 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SplitFlow.Application.Commands;
-using SplitFlow.Application.Queries.Roles;
-using SplitFlow.Application.Queries.Users;
+using SplitFlow.Application.Commands.Perfilamiento;
+using SplitFlow.Application.Queries.Perfilamiento.Roles;
 
 namespace SplitFlow.API.Controllers
 {

@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using SplitFlow.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SplitFlow.Domain.Entities.Perfilamiento;
 
 namespace SplitFlow.Infrastructure.SqlServer.Data.Configuration
 {
