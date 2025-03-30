@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SplitFlow.Domain.Entities.Perfilamiento;
 
-namespace SplitFlow.Infrastructure.SqlServer.Data.Configuration
+namespace SplitFlow.Infrastructure.SqlServer.Data.Configuration.Perfilamiento
 {
     public class RolModuloConfiguration : IEntityTypeConfiguration<RolModulo>
     {
