@@ -11,6 +11,9 @@ using SplitFlow.Infrastructure.MongoDB.EventHandlers.Perfilamiento;
 using SplitFlow.Infrastructure.SqlServer.Data;
 using SplitFlow.Infrastructure.SqlServer.Interfaces.Perfilamiento;
 using SplitFlow.Infrastructure.SqlServer.Repositories.Perfilamiento;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,11 +71,32 @@ services.AddScoped<IModuloRepository, ModuloRepository>();
 services.AddScoped<IRolModuloRepository, RolModuloRepository>();
 #endregion
 
-// ✅ Agregar Controladores
+// ✅ Configurar JWT Authentication
+var jwtSettings = configuration.GetSection("JwtSettings");
+var secretKey = jwtSettings["Secret"] ?? "TuClaveSecretaMuyLargaParaSeguridad";
+services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtSettings["Issuer"],
+        ValidAudience = jwtSettings["Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
+    };
+});
+
+
+
+// ✅ Agregar Controladores y swagger
 services.AddControllers();
-
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
