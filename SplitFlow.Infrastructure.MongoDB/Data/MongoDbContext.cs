@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
+using SplitFlow.Infrastructure.MongoDB.ReadModels.Gestion;
+using SplitFlow.Infrastructure.MongoDB.ReadModels.Parametrizacion;
 using SplitFlow.Infrastructure.MongoDB.ReadModels.Perfilamiento;
 
 
@@ -16,9 +18,20 @@ namespace SplitFlow.Infrastructure.MongoDB.Data
         }
 
         //Agregar modelos de lectura aqui
+        #region Perfilamiento
         public IMongoCollection<UserReadModel> Users => _database.GetCollection<UserReadModel>("Users");
         public IMongoCollection<RoleReadModel> Roles => _database.GetCollection<RoleReadModel>("Roles");
         public IMongoCollection<ModuloReadModel> Modulos => _database.GetCollection<ModuloReadModel>("Modules");
         public IMongoCollection<RolModuloReadModel> RolModulo => _database.GetCollection<RolModuloReadModel>("RolModulo");
+        #endregion
+        #region Parametrizacion
+        public IMongoCollection<ParGeneralReadModel> ParametroGeneral => _database.GetCollection<ParGeneralReadModel>("ParametroGeneral");
+        public IMongoCollection<ParEspecificoReadModel> ParametroEspecifico => _database.GetCollection<ParEspecificoReadModel>("ParametroEspecifico");
+        #endregion
+        #region Gestion
+        public IMongoCollection<CuentaReadModel> Cuentas => _database.GetCollection<CuentaReadModel>("Cuentas");
+        public IMongoCollection<ProductoReadModel> Productos => _database.GetCollection<ProductoReadModel>("Productos");
+        public IMongoCollection<MovimientoDebitoReadModel> MovimientoDebito => _database.GetCollection<MovimientoDebitoReadModel>("MovimientoDebito");
+        #endregion
     }
 }

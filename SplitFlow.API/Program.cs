@@ -14,6 +14,10 @@ using SplitFlow.Infrastructure.SqlServer.Repositories.Perfilamiento;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using SplitFlow.Infrastructure.SqlServer.Interfaces.Parametrizacion;
+using SplitFlow.Infrastructure.SqlServer.Repositories.Parametrizacion;
+using SplitFlow.Infrastructure.SqlServer.Interfaces.Gestion;
+using SplitFlow.Infrastructure.SqlServer.Repositories.Gestion;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +30,7 @@ var services = builder.Services;
 
 // ✅ Configurar MediatR (CQRS)
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
+#region Perfilamiento
     #region Usuarios
     typeof(UserCommandHandler).Assembly,
     typeof(UserQueryHandler).Assembly,
@@ -46,6 +51,9 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
     typeof(RolModuloQueryHandler).Assembly,
     typeof(RolModuloCreatedEventHandler).Assembly
     #endregion
+#endregion
+#region Parametrizacion
+#endregion
 ));
 
 #region Confuguracion SQL
@@ -63,12 +71,24 @@ services.AddScoped<IMongoDatabase>(sp => mongoDatabase);
 services.AddSingleton<MongoDbContext>();
 #endregion
 
-#region Inyeccion de dependencias
 // ✅ Inyección de dependencias para Repositorios
+#region Inyeccion de dependencias
+
+#region Perfilamiento
 services.AddScoped<IUserRepository, UserRepository>();
 services.AddScoped<IRoleRepository, RoleRepository>();
 services.AddScoped<IModuloRepository, ModuloRepository>();
 services.AddScoped<IRolModuloRepository, RolModuloRepository>();
+#endregion
+#region Parametrizacion
+services.AddScoped<IParGenYEspeRepository, ParGenYEspeRepository>();
+#endregion
+#region Gestion
+services.AddScoped<ICuentaRepository, CuentaRepository>();
+services.AddScoped<IProductoRepository, ProductoRepository>();
+services.AddScoped<IMovimientoDebitoRepository, MovimientoDebitoRepository>();
+#endregion
+
 #endregion
 
 // ✅ Configurar JWT Authentication

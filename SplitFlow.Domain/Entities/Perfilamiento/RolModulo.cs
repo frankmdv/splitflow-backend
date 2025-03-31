@@ -10,8 +10,8 @@ namespace SplitFlow.Domain.Entities.Perfilamiento
     {
         public long Id { get; set; }
         public long RoleId { get; set; }
-        public Role Role { get; set; }
+        public virtual Role Role { get; set; }
         public long ModuloId { get; set; }
-        public Modulo Modulo { get; set; }
+        public virtual Modulo Modulo { get; set; }
     }
 }

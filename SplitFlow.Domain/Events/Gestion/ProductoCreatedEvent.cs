@@ -1,19 +1,18 @@
-﻿using SplitFlow.Domain.Entities.Parametrizacion;
+﻿using MediatR;
+using SplitFlow.Domain.Events.Parametrizacion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SplitFlow.Domain.Entities.Gestion
+namespace SplitFlow.Domain.Events.Gestion
 {
-    public class Producto
+    public class ProductoCreatedEvent : INotification
     {
-        public long Id { get; set; }
-        public long IdCuenta { get; set; }
-        public Cuenta Cuenta { get; set; }
-        public long IdTipoProducto { get; set; }
-        public virtual ParametroEspecifico TipoProducto { get; set; }
+        public long ProductoId { get; set; }
+        public CuentaCreatedEvent Cuenta { get; set; }
+        public ParEspecificoCreatedEvent TipoProducto { get; set; }
         public string Nombre { get; set; }
         public string NumeroProducto { get; set; }
         public DateTime FechaVencimiento { get; set; }
@@ -26,9 +25,5 @@ namespace SplitFlow.Domain.Entities.Gestion
         public DateTime? FechaLimitePago { get; set; } // Para productos credito
         public DateTime CreateAt { get; set; }
         public DateTime? LastUpdate { get; set; }
-
-        #region Movimiento Debito
-        public List<MovimientoDebito> ListaMovimientoDebito { get; set; } = new List<MovimientoDebito>();
-        #endregion
     }
 }

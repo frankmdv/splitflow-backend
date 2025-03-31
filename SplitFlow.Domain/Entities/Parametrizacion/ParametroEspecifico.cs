@@ -13,7 +13,7 @@ namespace SplitFlow.Domain.Entities.Parametrizacion
         public string Nombre { get; set; }
         public bool Estado { get; set; }
         public long IdParGeneral { get; set; }
-        public ParametroGeneral ParametroGeneral { get; set; }
+        public virtual ParametroGeneral ParametroGeneral { get; set; }
         public DateTime CreateAt { get; set; }
 
         #region Cuenta
@@ -23,6 +23,12 @@ namespace SplitFlow.Domain.Entities.Parametrizacion
         #endregion
         #region Producto
         public List<Producto> ListaTipoProducto { get; set; } = new List<Producto>();
+        #endregion
+        #region Movimiento Debito
+        public List<MovimientoDebito> ListaTipoMovimientoDebito { get; set; } = new List<MovimientoDebito>();
+        #endregion
+        #region Presupuesto
+        public List<Presupuesto> ListaCategoriasPresupuestos { get; set; } = new List<Presupuesto>();
         #endregion
     }
 }

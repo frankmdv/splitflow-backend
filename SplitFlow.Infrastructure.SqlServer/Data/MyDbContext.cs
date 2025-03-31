@@ -30,7 +30,10 @@ namespace SplitFlow.Infrastructure.SqlServer.Data
         #endregion
 
         #region Gestion
-        public DbSet<Cuenta> Cuenta { get; set; }
+        public DbSet<Cuenta> Cuentas { get; set; }
+        public DbSet<Producto> Productos { get; set; }
+        public DbSet<MovimientoDebito> MovimientosDebito { get; set; }
+        public DbSet<Presupuesto> Presupuestos { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -44,10 +47,12 @@ namespace SplitFlow.Infrastructure.SqlServer.Data
             modelBuilder.ApplyConfiguration(new PGeneralConfiguration());
             modelBuilder.ApplyConfiguration(new PEspecificoConfiguration());
             #endregion
-
+             
             #region Gestion
             modelBuilder.ApplyConfiguration(new CuentaConfiguration());
             modelBuilder.ApplyConfiguration(new ProductoConfiguration());
+            modelBuilder.ApplyConfiguration(new MovimientoDebitoConfiguration());
+            modelBuilder.ApplyConfiguration(new PresupuestoConfiguration());
             #endregion
 
         }

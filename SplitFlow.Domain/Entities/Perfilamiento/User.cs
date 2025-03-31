@@ -17,7 +17,8 @@ namespace SplitFlow.Domain.Entities.Perfilamiento
         public long RoleId { get; set; }
         public bool IsActive { get; set; } = true;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public Role Role { get; set; }
+        public virtual Role Role { get; set; }
         public List<Cuenta> ListaUsuarioCuenta { get; set; } = new List<Cuenta>();
+        public List<Presupuesto> ListaPresupuestosUsuarios { get; set; } = new List<Presupuesto>();
     }
 }
