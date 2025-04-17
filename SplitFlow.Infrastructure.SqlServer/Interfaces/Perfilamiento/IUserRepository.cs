@@ -12,5 +12,6 @@ namespace SplitFlow.Infrastructure.SqlServer.Interfaces.Perfilamiento
         Task AddAsync(User user);
         Task UpdateAsync(User user);
         Task DeleteAsync(long id);
+        Task<User> GetUserById(long id);
     }
 }

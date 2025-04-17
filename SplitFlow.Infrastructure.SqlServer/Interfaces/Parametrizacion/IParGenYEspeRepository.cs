@@ -13,5 +13,6 @@ namespace SplitFlow.Infrastructure.SqlServer.Interfaces.Parametrizacion
         Task AddParEspecifico(ParametroEspecifico pEspecifico);
         Task UpdateParGeneral(ParametroGeneral pGeneral);
         Task UpdateParEspecifico(ParametroEspecifico pEspecifico);
+        Task<ParametroEspecifico> GetParEspecificoById(long id);
     }
 }

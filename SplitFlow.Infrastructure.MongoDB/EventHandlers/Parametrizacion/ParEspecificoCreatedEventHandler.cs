@@ -31,10 +31,7 @@ namespace SplitFlow.Infrastructure.MongoDB.EventHandlers.Parametrizacion
                 Estado = notification.Estado,
                 ParametroGeneral = new ParGeneralReadModel
                 {
-                    Id = notification.ParGeneral.ParGenId,
-                    Nombre = notification.ParGeneral.Nombre,
-                    Estado = notification.ParGeneral.Estado,
-                    CreateAt = notification.ParGeneral.CreateAt
+                    Id = notification.IdParGeneral
                 },
                 CreateAt = notification.CreateAt
             };

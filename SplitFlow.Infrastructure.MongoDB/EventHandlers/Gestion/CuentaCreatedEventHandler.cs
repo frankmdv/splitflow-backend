@@ -33,14 +33,7 @@ namespace SplitFlow.Infrastructure.MongoDB.EventHandlers.Gestion
                     Id = notification.Usuario.UserId,
                     Username = notification.Usuario.Username,
                     Email = notification.Usuario.Email,
-                    Role = new RoleReadModel
-                    {
-                        Id = notification.Usuario.Role.RoleId,
-                        Name = notification.Usuario.Role.Name,
-                        Description = notification.Usuario.Role.Description
-                    },
-                    IsActive = notification.Usuario.IsActive,
-                    CreatedAt = notification.Usuario.CreatedAt
+                    IsActive = notification.Usuario.IsActive
                 },
                 TipoCuenta = new ParEspecificoReadModel
                 {

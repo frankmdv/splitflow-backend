@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SplitFlow.Application.Commands.Perfilamiento;
 using SplitFlow.Application.Queries.Perfilamiento.Users;
@@ -16,7 +17,9 @@ namespace SplitFlow.API.Controllers
             _mediator = mediator;
         }
 
+        
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateUser(CreateUserCommand command)
         {
             var userId = await _mediator.Send(command);
@@ -35,6 +38,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAllUsers()
         {
             var users = await _mediator.Send(new GetAllUsersQuery());

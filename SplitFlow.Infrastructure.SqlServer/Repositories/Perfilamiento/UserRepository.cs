@@ -40,5 +40,13 @@ namespace SplitFlow.Infrastructure.SqlServer.Repositories.Perfilamiento
                 await _dbContext.SaveChangesAsync();
             }
         }
+
+        public async Task<User> GetUserById(long id)
+        {
+            return await _dbContext.Users
+                .Include(r => r.Role)
+                .Where(u => u.Id == id)
+                .FirstOrDefaultAsync();
+        }
     }
 }

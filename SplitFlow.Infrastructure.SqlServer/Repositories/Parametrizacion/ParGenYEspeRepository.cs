@@ -42,5 +42,10 @@ namespace SplitFlow.Infrastructure.SqlServer.Repositories.Parametrizacion
             _dbContext.ParEspecifico.Update(pEspecifico);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<ParametroEspecifico> GetParEspecificoById(long id)
+        {
+            return await _dbContext.ParEspecifico.FindAsync(id);
+        }
     }
 }

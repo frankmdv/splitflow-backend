@@ -18,6 +18,11 @@ using SplitFlow.Infrastructure.SqlServer.Interfaces.Parametrizacion;
 using SplitFlow.Infrastructure.SqlServer.Repositories.Parametrizacion;
 using SplitFlow.Infrastructure.SqlServer.Interfaces.Gestion;
 using SplitFlow.Infrastructure.SqlServer.Repositories.Gestion;
+using SplitFlow.Infrastructure.MongoDB.EventHandlers.Parametrizacion;
+using SplitFlow.Application.Handlers.Parametrizacion.ParEspe;
+using SplitFlow.Application.Handlers.Parametrizacion.ParGen;
+using SplitFlow.Infrastructure.MongoDB.EventHandlers.Gestion;
+using SplitFlow.Application.Handlers.Gestion.CuentasHandlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,10 +54,27 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
     #region RolModulo
     typeof(RolModuloCommandHandler).Assembly,
     typeof(RolModuloQueryHandler).Assembly,
-    typeof(RolModuloCreatedEventHandler).Assembly
+    typeof(RolModuloCreatedEventHandler).Assembly,
     #endregion
 #endregion
 #region Parametrizacion
+    #region Parametro general
+    typeof(ParGeneralCommandHandler).Assembly,
+    typeof(ParGeneralQueryHandler).Assembly,
+    typeof(ParGeneralCreatedEventHandler).Assembly,
+    #endregion
+    #region Parametro especifico
+    typeof(ParEspecificoCommandHandler).Assembly,
+    typeof(ParEspecificoQueryHandler).Assembly,
+    typeof(ParEspecificoCreatedEventHandler).Assembly,
+    #endregion
+#endregion
+#region Gestion
+    #region Cuenta
+    typeof(CuentaCommandHandler).Assembly,
+    typeof(CuentaCreatedEventHandler).Assembly,
+    typeof(CuentaQueryHandler).Assembly
+    #endregion
 #endregion
 ));
 
@@ -118,7 +140,41 @@ services.AddAuthentication(options =>
 // ✅ Agregar Controladores y swagger
 services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "SplitFlow API",
+        Version = "v1"
+    });
+
+    // 🔒 Configuración del esquema de seguridad JWT
+    c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        Description = "Ingrese el token JWT como: Bearer {su_token}"
+    });
+
+    c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+    {
+        {
+            new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+            {
+                Reference = new Microsoft.OpenApi.Models.OpenApiReference
+                {
+                    Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
+
 
 var app = builder.Build();
 

@@ -5,14 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SplitFlow.Domain.Events.Parametrizacion
+namespace SplitFlow.Application.Commands.Parametrizacion
 {
-    public class ParEspecificoCreatedEvent : INotification
+    public class CreateParGeneralCommand : IRequest<long>
     {
-        public long ParEspeId { get; set; }
         public string Nombre { get; set; }
         public bool Estado { get; set; }
-        public long IdParGeneral { get; set; }
         public DateTime CreateAt { get; set; }
     }
 }
