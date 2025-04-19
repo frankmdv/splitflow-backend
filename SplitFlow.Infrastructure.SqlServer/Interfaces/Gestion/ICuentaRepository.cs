@@ -12,5 +12,6 @@ namespace SplitFlow.Infrastructure.SqlServer.Interfaces.Gestion
         Task AddCuenta(Cuenta cuenta);
         Task UpdateCuenta(Cuenta cuenta);
         Task DeleteCuenta(long id);
+        Task<Cuenta> GetCuentaById(long id);
     }
 }

@@ -1,4 +1,5 @@
-﻿using SplitFlow.Domain.Entities.Gestion;
+﻿using Microsoft.EntityFrameworkCore;
+using SplitFlow.Domain.Entities.Gestion;
 using SplitFlow.Domain.Entities.Parametrizacion;
 using SplitFlow.Infrastructure.SqlServer.Data;
 using SplitFlow.Infrastructure.SqlServer.Interfaces.Gestion;
@@ -40,5 +41,16 @@ namespace SplitFlow.Infrastructure.SqlServer.Repositories.Gestion
                 await _dbContext.SaveChangesAsync();
             }
         }
+
+        public async Task<Cuenta> GetCuentaById(long id)
+        {
+            return await _dbContext.Cuentas
+                .Include(c => c.Usuario)
+                .Include(c => c.TipoCuenta)
+                .Include(c => c.Banco)
+                .Include(c => c.Moneda)
+                .FirstOrDefaultAsync(c => c.Id == id);
+        }
+
     }
 }
