@@ -70,6 +70,7 @@ namespace SplitFlow.Application.Handlers.Perfilamiento.Users
 
             return new LoginResult
             {
+                IdUser = user.Id,
                 Token = new JwtSecurityTokenHandler().WriteToken(token)
             };
         }

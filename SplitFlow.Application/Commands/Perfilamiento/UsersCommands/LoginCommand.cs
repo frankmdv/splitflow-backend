@@ -10,6 +10,7 @@ namespace SplitFlow.Application.Commands.Perfilamiento.UsersCommands
 
     public class LoginResult
     {
+        public long IdUser { get; set; }
         public string Token { get; set; } = string.Empty;
     }
 }
