@@ -34,6 +34,17 @@ var configuration = builder.Configuration;
 // 🔹 Agregar servicios a la aplicación
 var services = builder.Services;
 
+// ✅ Configurar CORS
+services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 // ✅ Configurar MediatR (CQRS)
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
 #region Perfilamiento
@@ -191,6 +202,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowAngularApp");
+app.UseAuthentication();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
