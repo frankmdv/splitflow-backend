@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SplitFlow.Application.Commands.Perfilamiento;
 using SplitFlow.Application.Queries.Perfilamiento.Roles;
@@ -17,6 +18,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateRole(CreateRoleCommand command)
         {
             var roleId = await _mediator.Send(command);
@@ -24,6 +26,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> GetRoleById(long id)
         {
             var role = await _mediator.Send(new GetRoleByIdQuery(id));
@@ -35,6 +38,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAllRoles()
         {
             var roles = await _mediator.Send(new GetAllRolesQuery());

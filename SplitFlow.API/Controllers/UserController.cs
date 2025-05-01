@@ -27,6 +27,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet("{id}")]
+        //[Authorize]
         public async Task<IActionResult> GetUserById(long id)
         {
             var user = await _mediator.Send(new GetUserByIdQuery(id));

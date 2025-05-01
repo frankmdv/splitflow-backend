@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SplitFlow.Application.Queries.Perfilamiento.Users
 {
-    public class GetUserByIdQuery : IRequest<UserReadModel>
+    public class GetUserByIdQuery : IRequest<UserWithoutPasswordDto>
     {
         public long UserId { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SplitFlow.Application.Commands.Gestion.CuentaCommands;
 using SplitFlow.Application.Commands.Parametrizacion;
@@ -19,6 +20,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateCuenta(CreateCuentaCommand command)
         {
             var cuentaId = await _mediator.Send(command);
@@ -26,6 +28,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet("cuentas/por-usuario/{id}")]
+        [Authorize]
         public async Task<IActionResult> GetCuentaById(long id)
         {
             var cuenta = await _mediator.Send(new GetCuentasByIdUsuarioQuery(id));

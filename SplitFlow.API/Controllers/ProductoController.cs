@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SplitFlow.Application.Commands.Gestion.CuentaCommands;
 using SplitFlow.Application.Commands.Gestion.ProductoCommands;
@@ -20,6 +21,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateProducto(CreateProductoCommand command)
         {
             var productoId = await _mediator.Send(command);
@@ -38,6 +40,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> GetProductoById(long id)
         {
             var producto = await _mediator.Send(new GetProductoById(id));
@@ -49,6 +52,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAllProductos()
         {
             var productos = await _mediator.Send(new GetAllProductosQuery());

@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 namespace SplitFlow.Application.Handlers.Perfilamiento.Users
 {
     public class UserQueryHandler :
-    IRequestHandler<GetAllUsersQuery, List<UserReadModel>>,
-    IRequestHandler<GetUserByIdQuery, UserReadModel>
+    IRequestHandler<GetAllUsersQuery, List<UserWithoutPasswordDto>>,
+    IRequestHandler<GetUserByIdQuery, UserWithoutPasswordDto>
     {
         private readonly IMongoCollection<UserReadModel> _users;
 
@@ -19,14 +19,29 @@ namespace SplitFlow.Application.Handlers.Perfilamiento.Users
             _users = database.GetCollection<UserReadModel>("Users");
         }
 
-        public async Task<List<UserReadModel>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
+        public async Task<List<UserWithoutPasswordDto>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
-            return await _users.Find(_ => true).ToListAsync(cancellationToken);
+            var users = await _users.Find(_ => true).ToListAsync(cancellationToken);
+            return users.Select(MapToUserWithoutPassword).ToList();
         }
 
-        public async Task<UserReadModel> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
+        public async Task<UserWithoutPasswordDto> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
-            return await _users.Find(u => u.Id == request.UserId).FirstOrDefaultAsync(cancellationToken);
+            var user = await _users.Find(u => u.Id == request.UserId).FirstOrDefaultAsync(cancellationToken);
+            return user == null ? null : MapToUserWithoutPassword(user);
+        }
+
+        private UserWithoutPasswordDto MapToUserWithoutPassword(UserReadModel user)
+        {
+            return new UserWithoutPasswordDto
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email,
+                Role = user.Role,
+                IsActive = user.IsActive,
+                CreatedAt = user.CreatedAt
+            };
         }
     }
 }

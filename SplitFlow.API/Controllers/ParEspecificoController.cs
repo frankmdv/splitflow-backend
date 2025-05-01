@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SplitFlow.Application.Commands.Parametrizacion;
 using SplitFlow.Application.Queries.Parametrizacion.ParEspe;
@@ -18,6 +19,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateParEspecifico(CreateParEspecificoCommand command)
         {
             var parEspId = await _mediator.Send(command);
@@ -36,6 +38,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> GetParEspById(long id)
         {
             var parEspe = await _mediator.Send(new GetParEspByIdQuery(id));
@@ -47,6 +50,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAllParEspecificos()
         {
             var parEspes = await _mediator.Send(new GetAllParEspQuery());
