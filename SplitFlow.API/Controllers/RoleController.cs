@@ -7,7 +7,7 @@ using SplitFlow.Application.Queries.Perfilamiento.Roles;
 namespace SplitFlow.API.Controllers
 {
     [ApiController]
-    [Route("api/roles")]
+    [Route("api/role")]
     public class RoleController : ControllerBase
     {
         private readonly IMediator _mediator;

@@ -8,7 +8,7 @@ using SplitFlow.Application.Queries.Perfilamiento.RolModulo;
 namespace SplitFlow.API.Controllers
 {
     [ApiController]
-    [Route("api/rolModulos")]
+    [Route("api/role-module")]
     public class RolModuloController : ControllerBase
     {
         private readonly IMediator _mediator;

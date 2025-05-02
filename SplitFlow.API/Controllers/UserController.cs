@@ -7,7 +7,7 @@ using SplitFlow.Application.Queries.Perfilamiento.Users;
 namespace SplitFlow.API.Controllers
 {
     [ApiController]
-    [Route("api/users")]
+    [Route("api/user")]
     public class UserController : ControllerBase
     {
         private readonly IMediator _mediator;

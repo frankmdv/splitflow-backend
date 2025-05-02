@@ -9,7 +9,7 @@ using SplitFlow.Application.Queries.Parametrizacion.ParEspe;
 namespace SplitFlow.API.Controllers
 {
     [ApiController]
-    [Route("api/Cuenta")]
+    [Route("api/accounts")]
     public class CuentaController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -27,7 +27,7 @@ namespace SplitFlow.API.Controllers
             return Ok(new { CuentaId = cuentaId });
         }
 
-        [HttpGet("cuentas/por-usuario/{id}")]
+        [HttpGet("/by-user/{id}")]
         [Authorize]
         public async Task<IActionResult> GetCuentaById(long id)
         {

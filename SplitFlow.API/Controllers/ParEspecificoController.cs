@@ -8,7 +8,7 @@ using SplitFlow.Application.Queries.Parametrizacion.ParGen;
 namespace SplitFlow.API.Controllers
 {
     [ApiController]
-    [Route("api/ParametrosEspecificos")]
+    [Route("api/specific-parameter")]
     public class ParEspecificoController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -26,7 +26,7 @@ namespace SplitFlow.API.Controllers
             return Ok(new { ParEspId = parEspId });
         }
 
-        [HttpGet("parametros-especificos/por-par-general/{id}")]
+        [HttpGet("/by-general-parameter/{id}")]
         public async Task<IActionResult> GetParEspByParGenId(long id)
         {
             var parEspe = await _mediator.Send(new GetParEspByIdParGenQuery(id));

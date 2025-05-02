@@ -10,7 +10,7 @@ using SplitFlow.Application.Queries.Perfilamiento.Modulos;
 namespace SplitFlow.API.Controllers
 {
     [ApiController]
-    [Route("api/Producto")]
+    [Route("api/product")]
     public class ProductoController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -28,7 +28,7 @@ namespace SplitFlow.API.Controllers
             return Ok(new { ProductoId = productoId });
         }
 
-        [HttpGet("Productos/por-cuenta/{id}")]
+        [HttpGet("/by-account/{id}")]
         public async Task<IActionResult> GetProductoByIdCuenta(long id)
         {
             var producto = await _mediator.Send(new GetProductoByIdCuenta(id));

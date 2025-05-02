@@ -7,7 +7,7 @@ using SplitFlow.Application.Queries.Perfilamiento.Modulos;
 namespace SplitFlow.API.Controllers
 {
     [ApiController]
-    [Route("api/modulos")]
+    [Route("api/module")]
     public class ModuloController : ControllerBase
     {
         private readonly IMediator _mediator;

@@ -9,7 +9,7 @@ using SplitFlow.Application.Queries.Gestion.ProductoQuerys;
 namespace SplitFlow.API.Controllers
 {
     [ApiController]
-    [Route("api/movimiento-debito")]
+    [Route("api/debit-movement")]
     public class MovimientoDebitoController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -27,7 +27,7 @@ namespace SplitFlow.API.Controllers
             return Ok(new { MovDebId = movDebId });
         }
 
-        [HttpGet("movimientos-debito/por-producto/{id}")]
+        [HttpGet("/by-producto/{id}")]
         public async Task<IActionResult> GetMovimientosDebitoByProductoId(long id)
         {
             var movDeb = await _mediator.Send(new GetMovimientosByIdProducto(id));

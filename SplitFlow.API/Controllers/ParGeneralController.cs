@@ -9,7 +9,7 @@ using SplitFlow.Application.Queries.Perfilamiento.Roles;
 namespace SplitFlow.API.Controllers
 {
     [ApiController]
-    [Route("api/ParametrosGenerales")]
+    [Route("api/general-parameter")]
     public class ParGeneralController : ControllerBase
     {
         private readonly IMediator _mediator;
