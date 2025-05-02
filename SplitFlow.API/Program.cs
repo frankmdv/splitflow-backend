@@ -24,6 +24,7 @@ using SplitFlow.Application.Handlers.Parametrizacion.ParGen;
 using SplitFlow.Infrastructure.MongoDB.EventHandlers.Gestion;
 using SplitFlow.Application.Handlers.Gestion.CuentasHandlers;
 using SplitFlow.Application.Handlers.Gestion.ProductoHandlers;
+using SplitFlow.Application.Handlers.Gestion.MovimientosDebitoHandlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -90,7 +91,12 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
     #region Producto
     typeof(ProductoCommandHandler).Assembly,
     typeof(ProductoCreatedEventHandler).Assembly,
-    typeof(ProductoQueryHandler).Assembly
+    typeof(ProductoQueryHandler).Assembly,
+    #endregion
+    #region Movimiento Debito
+    typeof(MovimientoDebitoCreatedEventHandler).Assembly,
+    typeof(MovDebitoCommandHandler).Assembly,
+    typeof(MovDebitoQueryHandler).Assembly
     #endregion
 #endregion
 ));

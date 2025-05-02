@@ -1,4 +1,5 @@
-﻿using SplitFlow.Domain.Entities.Gestion;
+﻿using Microsoft.EntityFrameworkCore;
+using SplitFlow.Domain.Entities.Gestion;
 using SplitFlow.Infrastructure.SqlServer.Data;
 using SplitFlow.Infrastructure.SqlServer.Interfaces.Gestion;
 using System;
@@ -38,6 +39,14 @@ namespace SplitFlow.Infrastructure.SqlServer.Repositories.Gestion
                 _dbContext.Productos.Remove(producto);
                 await _dbContext.SaveChangesAsync();
             }
+        }
+
+        public async Task<Producto> GetProductoById(long id)
+        {
+            return await _dbContext.Productos
+                .Include(p => p.Cuenta)
+                .Include(p => p.TipoProducto)
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
     }
 }

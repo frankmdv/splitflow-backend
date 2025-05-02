@@ -12,5 +12,6 @@ namespace SplitFlow.Infrastructure.SqlServer.Interfaces.Gestion
         Task AddProducto(Producto producto);
         Task UpdateCuenta(Producto producto);
         Task DeleteCuenta(long id);
+        Task<Producto> GetProductoById(long id);
     }
 }
