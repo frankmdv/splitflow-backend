@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SplitFlow.Application.Commands.Perfilamiento;
 using SplitFlow.Application.Queries.Perfilamiento.Modulos;
 using SplitFlow.Application.Queries.Perfilamiento.RolModulo;
+using SplitFlow.Application.Queries.Perfilamiento.RolModulos;
 
 namespace SplitFlow.API.Controllers
 {
@@ -38,7 +39,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetAllRolModulos()
         {
             var rolModulos = await _mediator.Send(new GetAllRolModulosQuery());
@@ -47,6 +48,18 @@ namespace SplitFlow.API.Controllers
                 return NotFound("No hay Rolmodulos registrados.");
 
             return Ok(rolModulos);
+        }
+
+        [HttpGet("/by-role/{idRole}")]
+        //[Authorize]
+        public async Task<IActionResult> GetRolModuloByIdRole(long idRole)
+        {
+            var rolModulo = await _mediator.Send(new GetRolModuloByIdRol(idRole));
+
+            if (rolModulo == null)
+                return NotFound("No hay roles modulos disponibles para este rol");
+
+            return Ok(rolModulo);
         }
     }
 }
