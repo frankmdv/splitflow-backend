@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SplitFlow.Application.Commands.Perfilamiento;
 using SplitFlow.Application.Commands.Perfilamiento.UsersCommands;
@@ -29,6 +30,13 @@ namespace SplitFlow.API.Controllers
             {
                 return Unauthorized(new { error = ex.Message });
             }
+        }
+
+        [HttpGet("validate-token")]
+        [Authorize]
+        public IActionResult ValidateToken()
+        {
+            return Ok(true);
         }
 
     }
