@@ -132,6 +132,11 @@ services.AddScoped<IParGenYEspeRepository, ParGenYEspeRepository>();
 services.AddScoped<ICuentaRepository, CuentaRepository>();
 services.AddScoped<IProductoRepository, ProductoRepository>();
 services.AddScoped<IMovimientoDebitoRepository, MovimientoDebitoRepository>();
+services.AddScoped<IPresupuestoRepository, PresupuestoRepository>();
+services.AddScoped<IGastoRepository, GastoRepository>();
+services.AddScoped<ICreditoRepository, CreditoRepository>();
+services.AddScoped<IMovimientoCreditoRepository, MovimientoCreditoRepository>();
+services.AddScoped<ICuotaRepository, CuotaRepository>();
 #endregion
 
 #endregion

@@ -1,5 +1,7 @@
-﻿using SplitFlow.Domain.Entities.Gestion;
+﻿using Microsoft.EntityFrameworkCore;
+using SplitFlow.Domain.Entities.Gestion;
 using SplitFlow.Infrastructure.SqlServer.Data;
+using SplitFlow.Infrastructure.SqlServer.Data.Configuration.Gestion;
 using SplitFlow.Infrastructure.SqlServer.Interfaces.Gestion;
 using System;
 using System.Collections.Generic;
@@ -38,6 +40,14 @@ namespace SplitFlow.Infrastructure.SqlServer.Repositories.Gestion
                 _dbContext.MovimientosDebito.Remove(movimiento);
                 await _dbContext.SaveChangesAsync();
             }
+        }
+
+        public async Task<MovimientoDebito> GetMovDebitoById(long id)
+        {
+            return await _dbContext.MovimientosDebito
+                .Include(md => md.Producto)
+                .Include(md => md.TipoMovimiento)
+                .FirstOrDefaultAsync(md => md.Id == id);
         }
     }
 }

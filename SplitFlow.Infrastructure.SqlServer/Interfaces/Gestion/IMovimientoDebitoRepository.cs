@@ -12,5 +12,6 @@ namespace SplitFlow.Infrastructure.SqlServer.Interfaces.Gestion
         Task AddMovimientoDebito(MovimientoDebito movimiento);
         Task UpdateMovimientoDebito(MovimientoDebito movimiento);
         Task DeleteMovimientoDebito(long id);
+        Task<MovimientoDebito> GetMovDebitoById(long id);
     }
 }
