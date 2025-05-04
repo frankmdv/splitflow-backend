@@ -1,12 +1,15 @@
 ﻿using SplitFlow.Domain.Entities.Gestion;
+using SplitFlow.Infrastructure.SqlServer.Data.Configuration.Gestion;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SplitFlow.Domain.Entities.Parametrizacion
 {
+    [Table("ParametroEspecifico", Schema = "PAR")]
     public class ParametroEspecifico
     {
         public long Id { get; set; }
@@ -28,7 +31,16 @@ namespace SplitFlow.Domain.Entities.Parametrizacion
         public List<MovimientoDebito> ListaTipoMovimientoDebito { get; set; } = new List<MovimientoDebito>();
         #endregion
         #region Presupuesto
-        public List<Presupuesto> ListaCategoriasPresupuestos { get; set; } = new List<Presupuesto>();
+        public List<Presupuesto> ListaCategoriaPresupuesto { get; set; } = new List<Presupuesto>();
+        #endregion
+        #region Credito
+        public List<Credito> ListaEstadoCredito { get; set; } = new List<Credito>();
+        #endregion
+        #region Movimiento Credito
+        public List<MovimientoCredito> ListaTipoMovimientoCredito { get; set; } = new List<MovimientoCredito>();
+        #endregion
+        #region Cuotas
+        public List<Cuota> ListaEstadosCuotas { get; set; } = new List<Cuota>();
         #endregion
     }
 }

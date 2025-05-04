@@ -1,12 +1,14 @@
 ﻿using SplitFlow.Domain.Entities.Parametrizacion;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SplitFlow.Domain.Entities.Gestion
 {
+    [Table("MovimientoDebito", Schema = "GES")]
     public class MovimientoDebito
     {
         public long Id { get; set; }
@@ -18,5 +20,6 @@ namespace SplitFlow.Domain.Entities.Gestion
         public string SaldoPrevio { get; set; }
         public string SaldoPosterior { get; set; }
         public DateTime FechaMovimiento { get; set; }
+        public List<Gasto> ListaGastoDebito { get; set; } = new List<Gasto>();
     }
 }

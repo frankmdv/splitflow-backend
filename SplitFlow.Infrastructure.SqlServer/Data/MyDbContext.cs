@@ -34,6 +34,10 @@ namespace SplitFlow.Infrastructure.SqlServer.Data
         public DbSet<Producto> Productos { get; set; }
         public DbSet<MovimientoDebito> MovimientosDebito { get; set; }
         public DbSet<Presupuesto> Presupuestos { get; set; }
+        public DbSet<Gasto> Gastos { get; set; }
+        public DbSet<Credito> Credito { get; set; }
+        public DbSet<Cuota> Cuotas { get; set; }
+        public DbSet<MovimientoCredito> MovimientosCredito { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -53,6 +57,10 @@ namespace SplitFlow.Infrastructure.SqlServer.Data
             modelBuilder.ApplyConfiguration(new ProductoConfiguration());
             modelBuilder.ApplyConfiguration(new MovimientoDebitoConfiguration());
             modelBuilder.ApplyConfiguration(new PresupuestoConfiguration());
+            modelBuilder.ApplyConfiguration(new GastoConfiguration());
+            modelBuilder.ApplyConfiguration(new CreditoConfiguration());
+            modelBuilder.ApplyConfiguration(new MovimientoCreditoConfiguration());
+            modelBuilder.ApplyConfiguration(new CuotaConfiguration());
             #endregion
 
         }

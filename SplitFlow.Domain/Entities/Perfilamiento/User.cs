@@ -1,6 +1,7 @@
 ﻿using SplitFlow.Domain.Entities.Gestion;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace SplitFlow.Domain.Entities.Perfilamiento
 {
+    [Table("User", Schema = "PER")]
     public class User
     {
         public long Id { get; set; }

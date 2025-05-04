@@ -2,12 +2,14 @@
 using SplitFlow.Domain.Entities.Perfilamiento;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SplitFlow.Domain.Entities.Gestion
 {
+    [Table("Cuenta", Schema = "GES")]
     public class Cuenta
     {
         public long Id { get; set; }

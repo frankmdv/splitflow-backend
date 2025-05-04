@@ -1,12 +1,15 @@
 ﻿using SplitFlow.Domain.Entities.Parametrizacion;
+using SplitFlow.Infrastructure.SqlServer.Data.Configuration.Gestion;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SplitFlow.Domain.Entities.Gestion
 {
+    [Table("Producto", Schema = "GES")]
     public class Producto
     {
         public long Id { get; set; }
@@ -29,6 +32,9 @@ namespace SplitFlow.Domain.Entities.Gestion
 
         #region Movimiento Debito
         public List<MovimientoDebito> ListaMovimientoDebito { get; set; } = new List<MovimientoDebito>();
+        #endregion
+        #region credito
+        public List<Credito> ListaCredito { get; set; } = new List<Credito>();
         #endregion
     }
 }

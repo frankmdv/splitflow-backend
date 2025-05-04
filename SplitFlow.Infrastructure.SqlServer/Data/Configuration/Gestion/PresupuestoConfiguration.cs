@@ -21,7 +21,7 @@ namespace SplitFlow.Infrastructure.SqlServer.Data.Configuration.Gestion
                 .HasForeignKey(p => p.IdUsuario);
 
             builder.HasOne(p => p.Categoria)
-                .WithMany(p => p.ListaCategoriasPresupuestos)
+                .WithMany(p => p.ListaCategoriaPresupuesto)
                 .OnDelete(DeleteBehavior.NoAction)
                 .HasForeignKey(p => p.IdCategoria);
         }
