@@ -16,9 +16,7 @@ namespace SplitFlow.Infrastructure.SqlServer.Data.Configuration.Gestion
         public string? SaldoPendiente { get; set; }
 
         public string? TasaInteres { get; set; }
-        public int Cuotas { get; set; }
 
-        public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
 
         public long IdEstado { get; set; }
