@@ -32,6 +32,11 @@ namespace SplitFlow.Infrastructure.MongoDB.Data
         public IMongoCollection<CuentaReadModel> Cuentas => _database.GetCollection<CuentaReadModel>("Cuentas");
         public IMongoCollection<ProductoReadModel> Productos => _database.GetCollection<ProductoReadModel>("Productos");
         public IMongoCollection<MovimientoDebitoReadModel> MovimientoDebito => _database.GetCollection<MovimientoDebitoReadModel>("MovimientoDebito");
+        public IMongoCollection<PresupuestoReadModel> Presupuesto => _database.GetCollection<PresupuestoReadModel>("Presupuesto");
+        public IMongoCollection<CreditoReadModel> Credito => _database.GetCollection<CreditoReadModel>("Credito");
+        public IMongoCollection<CuotaReadModel> Cuotas => _database.GetCollection<CuotaReadModel>("Cuotas");
+        public IMongoCollection<MovimientoCreditoReadModel> MovimientoCredito => _database.GetCollection<MovimientoCreditoReadModel>("MovimientoCredito");
+        public IMongoCollection<GastoReadModel> Gastos => _database.GetCollection<GastoReadModel>("Gastos");
         #endregion
     }
 }
