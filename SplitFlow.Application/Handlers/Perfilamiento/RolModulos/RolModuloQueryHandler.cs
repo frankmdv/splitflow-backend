@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MongoDB.Driver;
+using SplitFlow.Application.Queries.Perfilamiento.Modulos;
 using SplitFlow.Application.Queries.Perfilamiento.RolModulo;
 using SplitFlow.Application.Queries.Perfilamiento.RolModulos;
 using SplitFlow.Application.Queries.Perfilamiento.Users;
@@ -16,7 +17,8 @@ namespace SplitFlow.Application.Handlers.Perfilamiento.RolModulos
     public class RolModuloQueryHandler :
     IRequestHandler<GetAllRolModulosQuery, List<RolModuloReadModel>>,
     IRequestHandler<GetRolModuloByIdQuery, RolModuloReadModel>,
-    IRequestHandler<GetRolModuloByIdRol, RolModuloReadModel>
+    IRequestHandler<GetRolModuloByIdRol, RolModuloReadModel>,
+    IRequestHandler<GetModulosByIdRoleQuery, List<ModuloReadModel>>
     {
         private readonly IMongoCollection<RolModuloReadModel> _rolModulo;
 
@@ -40,5 +42,19 @@ namespace SplitFlow.Application.Handlers.Perfilamiento.RolModulos
             return await _rolModulo.Find(r => r.Role.Id == request.RolId).FirstOrDefaultAsync(cancellationToken);
         }
 
+        public async Task<List<ModuloReadModel>> Handle(GetModulosByIdRoleQuery request, CancellationToken cancellationToken)
+        {
+            var rolModulos = await _rolModulo
+                .Find(rm => rm.Role.Id == request.RoleId)
+                .ToListAsync(cancellationToken);
+
+            var modulos = rolModulos
+                .Select(rm => rm.Modulo)
+                .GroupBy(m => m.Id) // Alternativa a DistinctBy para compatibilidad
+                .Select(g => g.First())
+                .ToList();
+
+            return modulos;
+        }
     }
 }

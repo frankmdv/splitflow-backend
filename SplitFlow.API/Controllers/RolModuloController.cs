@@ -54,12 +54,12 @@ namespace SplitFlow.API.Controllers
         //[Authorize]
         public async Task<IActionResult> GetRolModuloByIdRole(long idRole)
         {
-            var rolModulo = await _mediator.Send(new GetRolModuloByIdRol(idRole));
+            var modulos = await _mediator.Send(new GetModulosByIdRoleQuery(idRole));
 
-            if (rolModulo == null)
-                return NotFound("No hay roles modulos disponibles para este rol");
+            if (modulos == null)
+                return NotFound("No hay modulos para este rol");
 
-            return Ok(rolModulo);
+            return Ok(modulos);
         }
     }
 }
