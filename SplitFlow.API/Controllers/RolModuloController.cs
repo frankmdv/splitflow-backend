@@ -50,7 +50,7 @@ namespace SplitFlow.API.Controllers
             return Ok(rolModulos);
         }
 
-        [HttpGet("/by-role/{idRole}")]
+        [HttpGet("api/role-module/by-role/{idRole}")]
         //[Authorize]
         public async Task<IActionResult> GetRolModuloByIdRole(long idRole)
         {
