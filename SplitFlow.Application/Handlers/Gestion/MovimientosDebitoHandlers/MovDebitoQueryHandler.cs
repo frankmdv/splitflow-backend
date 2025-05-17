@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using MongoDB.Driver;
-using SplitFlow.Application.Queries.Gestion.MovimientoDebitoQuerys;
+using SplitFlow.Application.Queries.Gestion.MovimientoDebitoQueries;
 using SplitFlow.Infrastructure.MongoDB.ReadModels.Gestion;
 using System;
 using System.Collections.Generic;

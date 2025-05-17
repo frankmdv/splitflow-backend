@@ -17,7 +17,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> CreateModulo(CreateModuloCommand command)
         {
             var moduloId = await _mediator.Send(command);
@@ -25,7 +25,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetModuloById(long id)
         {
             var modulo = await _mediator.Send(new GetModuloByIdQuery(id));
@@ -37,7 +37,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetAllModulos()
         {
             var modulos = await _mediator.Send(new GetAllModulosQuery());

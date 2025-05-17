@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using SplitFlow.Infrastructure.MongoDB.ReadModels.Gestion;
 
-namespace SplitFlow.Application.Queries.Gestion.MovimientoDebitoQuerys
+namespace SplitFlow.Application.Queries.Gestion.MovimientoDebitoQueries
 {
     public class GetMovimientosByIdProducto : IRequest<List<MovimientoDebitoReadModel>>
     {

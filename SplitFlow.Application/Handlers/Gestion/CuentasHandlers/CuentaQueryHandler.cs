@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using MongoDB.Driver;
-using SplitFlow.Application.Queries.Gestion.CuentasQuerys;
+using SplitFlow.Application.Queries.Gestion.CuentasQueries;
 using SplitFlow.Infrastructure.MongoDB.ReadModels.Gestion;
 using System;
 using System.Collections.Generic;

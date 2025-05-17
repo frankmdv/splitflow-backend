@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using MongoDB.Driver;
-using SplitFlow.Application.Queries.Gestion.ProductoQuerys;
+using SplitFlow.Application.Queries.Gestion.ProductoQueries;
 using SplitFlow.Infrastructure.MongoDB.ReadModels.Gestion;
 
 namespace SplitFlow.Application.Handlers.Gestion.ProductoHandlers
@@ -11,7 +11,7 @@ namespace SplitFlow.Application.Handlers.Gestion.ProductoHandlers
     IRequestHandler<GetProductoById, ProductoReadModel>
     {
         private readonly IMongoCollection<ProductoReadModel> _products;
-
+            
         public ProductoQueryHandler(IMongoDatabase database)
         {
             _products = database.GetCollection<ProductoReadModel>("Productos");

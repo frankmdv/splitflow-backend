@@ -20,7 +20,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> CreateParGeneral(CreateParGeneralCommand command)
         {
             var parGenId = await _mediator.Send(command);
@@ -39,7 +39,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetAllParGeneral()
         {
             var parGens = await _mediator.Send(new GetAllParGenQuery());

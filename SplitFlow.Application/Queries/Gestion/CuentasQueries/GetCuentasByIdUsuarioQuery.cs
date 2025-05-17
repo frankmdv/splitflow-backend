@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SplitFlow.Application.Queries.Gestion.CuentasQuerys
+namespace SplitFlow.Application.Queries.Gestion.CuentasQueries
 {
     public class GetCuentasByIdUsuarioQuery : IRequest<List<CuentaReadModel>>
     {

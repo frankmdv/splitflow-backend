@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SplitFlow.Application.Queries.Gestion.MovimientoDebitoQuerys
+namespace SplitFlow.Application.Queries.Gestion.MovimientoDebitoQueries
 {
     public class GetMovimientoDebitoByIdQuery : IRequest<MovimientoDebitoReadModel>
     {

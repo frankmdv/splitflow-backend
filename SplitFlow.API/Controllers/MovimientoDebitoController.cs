@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SplitFlow.Application.Commands.Gestion.MovimientoDebitoCommands;
 using SplitFlow.Application.Commands.Gestion.ProductoCommands;
-using SplitFlow.Application.Queries.Gestion.MovimientoDebitoQuerys;
-using SplitFlow.Application.Queries.Gestion.ProductoQuerys;
+using SplitFlow.Application.Queries.Gestion.MovimientoDebitoQueries;
+using SplitFlow.Application.Queries.Gestion.ProductoQueries;
 
 namespace SplitFlow.API.Controllers
 {
@@ -39,7 +39,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetMovimientosDebitoById(long id)
         {
             var movDeb = await _mediator.Send(new GetMovimientoDebitoByIdQuery(id));
@@ -51,7 +51,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetAllMovimientosDebito()
         {
             var movsDeb = await _mediator.Send(new GetAllMovimientosDebitoQuery());

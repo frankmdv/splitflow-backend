@@ -51,14 +51,14 @@ namespace SplitFlow.Application.Handlers.Perfilamiento.Users
 
             await _userRepository.AddAsync(user);
 
-            // 🔥 Publicar evento para que se almacene en MongoDB
+            // Publicar evento 
             await _mediator.Publish(new UserCreatedEvent
             {
                 UserId = user.Id,
                 Username = user.Username,
                 Email = user.Email,
                 PasswordHash = user.PasswordHash,
-                Role = new RoleCreatedEvent // Se envía el rol completo al evento
+                Role = new RoleCreatedEvent
                 {
                     RoleId = role.Id,
                     Name = role.Name,

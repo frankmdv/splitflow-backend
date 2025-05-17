@@ -18,7 +18,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> CreateRole(CreateRoleCommand command)
         {
             var roleId = await _mediator.Send(command);
@@ -26,7 +26,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetRoleById(long id)
         {
             var role = await _mediator.Send(new GetRoleByIdQuery(id));
@@ -38,7 +38,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetAllRoles()
         {
             var roles = await _mediator.Send(new GetAllRolesQuery());

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SplitFlow.Application.Queries.Gestion.ProductoQuerys
+namespace SplitFlow.Application.Queries.Gestion.ProductoQueries
 {
     public class GetProductoByIdCuenta : IRequest<List<ProductoReadModel>>
     {

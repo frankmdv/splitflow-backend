@@ -19,7 +19,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> CreateParEspecifico(CreateParEspecificoCommand command)
         {
             var parEspId = await _mediator.Send(command);
@@ -38,7 +38,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetParEspById(long id)
         {
             var parEspe = await _mediator.Send(new GetParEspByIdQuery(id));
@@ -50,7 +50,7 @@ namespace SplitFlow.API.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetAllParEspecificos()
         {
             var parEspes = await _mediator.Send(new GetAllParEspQuery());

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SplitFlow.Application.Queries.Gestion.MovimientoDebitoQuerys
+namespace SplitFlow.Application.Queries.Gestion.CuotasQueries
 {
-    public class GetAllMovimientosDebitoQuery : IRequest<List<MovimientoDebitoReadModel>>
+    public class GetAllCuotasQuery : IRequest<List<CuotaReadModel>>
     {
     }
 }
