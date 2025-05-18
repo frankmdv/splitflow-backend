@@ -36,7 +36,6 @@ namespace SplitFlow.Infrastructure.SqlServer.Data
         public DbSet<Presupuesto> Presupuestos { get; set; }
         public DbSet<Gasto> Gastos { get; set; }
         public DbSet<Credito> Credito { get; set; }
-        public DbSet<Cuota> Cuotas { get; set; }
         public DbSet<MovimientoCredito> MovimientosCredito { get; set; }
         #endregion
 
@@ -60,7 +59,6 @@ namespace SplitFlow.Infrastructure.SqlServer.Data
             modelBuilder.ApplyConfiguration(new GastoConfiguration());
             modelBuilder.ApplyConfiguration(new CreditoConfiguration());
             modelBuilder.ApplyConfiguration(new MovimientoCreditoConfiguration());
-            modelBuilder.ApplyConfiguration(new CuotaConfiguration());
             #endregion
 
         }

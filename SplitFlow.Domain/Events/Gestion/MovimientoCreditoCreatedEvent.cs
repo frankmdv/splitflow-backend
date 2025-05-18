@@ -16,6 +16,5 @@ namespace SplitFlow.Domain.Events.Gestion
         public string Monto { get; set; }
         public string? SaldoRestante { get; set; }
         public DateTime FechaMovimiento { get; set; }
-        public CuotaCreatedEvent? Cuota { get; set; }
     }
 }

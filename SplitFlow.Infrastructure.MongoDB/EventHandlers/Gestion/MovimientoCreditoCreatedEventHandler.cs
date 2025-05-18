@@ -33,12 +33,6 @@ namespace SplitFlow.Infrastructure.MongoDB.EventHandlers.Gestion
                     Id = notification.TipoMovimiento.ParEspeId,
                     Nombre = notification.TipoMovimiento.Nombre,
                 },
-                Cuota = new CuotaReadModel
-                {
-                    Id = notification.Cuota.CuotaId,
-                    NumeroCuota = notification.Cuota.NumeroCuota,
-                    MontoCuota = notification.Cuota.MontoCuota,
-                },
                 Monto = notification.Monto,
                 SaldoRestante = notification.SaldoRestante,
                 FechaMovimiento = notification.FechaMovimiento

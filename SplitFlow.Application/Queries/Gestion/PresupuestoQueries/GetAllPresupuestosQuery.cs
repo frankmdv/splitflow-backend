@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SplitFlow.Application.Queries.Gestion.CuotasQueries
+namespace SplitFlow.Application.Queries.Gestion.PresupuestoQueries
 {
-    public class GetAllCuotasQuery : IRequest<List<CuotaReadModel>>
+    public class GetAllPresupuestosQuery : IRequest<List<PresupuestoReadModel>>
     {
     }
 }

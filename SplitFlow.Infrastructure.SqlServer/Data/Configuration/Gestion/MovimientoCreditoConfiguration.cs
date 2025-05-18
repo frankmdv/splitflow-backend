@@ -23,11 +23,6 @@ namespace SplitFlow.Infrastructure.SqlServer.Data.Configuration.Gestion
                 .WithMany(p => p.ListaTipoMovimientoCredito)
                 .OnDelete(DeleteBehavior.NoAction)
                 .HasForeignKey(m => m.IdTipoMovimiento);
-
-            builder.HasOne(m => m.Cuota)
-                .WithMany(c => c.ListaMovimientosCredito)
-                .OnDelete(DeleteBehavior.NoAction)
-                .HasForeignKey(m => m.IdCuota);
         }
     }
 }

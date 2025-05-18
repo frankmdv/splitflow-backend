@@ -12,7 +12,6 @@ namespace SplitFlow.Infrastructure.MongoDB.ReadModels.Gestion
         public long Id { get; set; }
         public CreditoReadModel Credito { get; set; }
         public ParEspecificoReadModel TipoMovimiento { get; set; }
-        public CuotaReadModel? Cuota { get; set; }
         public string Monto { get; set; }
         public string SaldoRestante { get; set; }
         public DateTime FechaMovimiento { get; set; }

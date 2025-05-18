@@ -22,7 +22,6 @@ namespace SplitFlow.Infrastructure.SqlServer.Data.Configuration.Gestion
         public long IdEstado { get; set; }
         public virtual ParametroEspecifico Estado { get; set; }
 
-        public List<Cuota> ListaCuotasCredito { get; set; } = new();
         public List<MovimientoCredito> ListaMovimientosCredito { get; set; } = new();
     }
 }

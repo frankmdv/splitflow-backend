@@ -39,8 +39,5 @@ namespace SplitFlow.Domain.Entities.Parametrizacion
         #region Movimiento Credito
         public List<MovimientoCredito> ListaTipoMovimientoCredito { get; set; } = new List<MovimientoCredito>();
         #endregion
-        #region Cuotas
-        public List<Cuota> ListaEstadosCuotas { get; set; } = new List<Cuota>();
-        #endregion
     }
 }

@@ -25,6 +25,9 @@ using SplitFlow.Infrastructure.MongoDB.EventHandlers.Gestion;
 using SplitFlow.Application.Handlers.Gestion.CuentasHandlers;
 using SplitFlow.Application.Handlers.Gestion.ProductoHandlers;
 using SplitFlow.Application.Handlers.Gestion.MovimientosDebitoHandlers;
+using SplitFlow.Application.Handlers.Gestion.MovimientosCreditoHandlers;
+using SplitFlow.Application.Handlers.Gestion.PresupuestoHandlers;
+using SplitFlow.Application.Handlers.Gestion.GastoHandlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -96,8 +99,24 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
     #region Movimiento Debito
     typeof(MovimientoDebitoCreatedEventHandler).Assembly,
     typeof(MovDebitoCommandHandler).Assembly,
-    typeof(MovDebitoQueryHandler).Assembly
+    typeof(MovDebitoQueryHandler).Assembly,
     #endregion
+    #region Movimiento Credito
+    typeof(MovimientoCreditoCreatedEventHandler).Assembly,
+    typeof(MovCreditoCommandHandler).Assembly,
+    typeof(MovCreditoQueryHandler).Assembly,
+    #endregion
+    #region Presupuesto
+    typeof(PresupuestoCreatedEventHandler).Assembly,
+    typeof(PresupuestoCommandHandler).Assembly,
+    typeof(PresupuestoQueryHandler).Assembly,
+    #endregion
+    #region Gastos
+    typeof(GastoCreatedEventHandler).Assembly,
+    typeof(GastoCommandHandler).Assembly,
+    typeof(GastoQueryHandler).Assembly
+    #endregion
+
 #endregion
 ));
 
@@ -136,7 +155,6 @@ services.AddScoped<IPresupuestoRepository, PresupuestoRepository>();
 services.AddScoped<IGastoRepository, GastoRepository>();
 services.AddScoped<ICreditoRepository, CreditoRepository>();
 services.AddScoped<IMovimientoCreditoRepository, MovimientoCreditoRepository>();
-services.AddScoped<ICuotaRepository, CuotaRepository>();
 #endregion
 
 #endregion

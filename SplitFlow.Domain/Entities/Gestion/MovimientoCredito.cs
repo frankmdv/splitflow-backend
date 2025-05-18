@@ -25,9 +25,6 @@ namespace SplitFlow.Infrastructure.SqlServer.Data.Configuration.Gestion
 
         public DateTime FechaMovimiento { get; set; }
 
-        public long? IdCuota { get; set; } // Opcional: si aplica a una cuota
-        public virtual Cuota? Cuota { get; set; }
-
         public List<Gasto> ListaGastoCredito { get; set; } = new List<Gasto>();
     }
 

@@ -46,7 +46,6 @@ namespace SplitFlow.Infrastructure.SqlServer.Repositories.Gestion
             return await _dbContext.MovimientosCredito
                 .Include(mc => mc.Credito)
                 .Include(mc => mc.TipoMovimiento)
-                .Include(mc => mc.Cuota)
                 .FirstOrDefaultAsync(c => c.Id == id);
         }
     }
